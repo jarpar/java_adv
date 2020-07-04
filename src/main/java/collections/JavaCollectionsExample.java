@@ -61,10 +61,11 @@ public class JavaCollectionsExample {
 
     }
 
-
     // wypisz wszystkie elementy znajdujące się na parzystych indeksach listy names
     public void getAllElementsWithOddIndex() {
-        // ???
+        for (int i = 0; i < names.size(); i = i + 2) {
+            System.out.print(names.get(i) + " ");
+        }
     }
 
     public static void main(String[] args) {
@@ -73,7 +74,8 @@ public class JavaCollectionsExample {
 //        ex.listOperations();
 //        System.out.println("Wynik: " +
 //                ex.findElement(new ArrayList<>(Arrays.asList("Jan","Ala","Ola","Ela","Ala")), "Ala"));
-        ex.removeAllTheSameElements("Ala");
+        //ex.removeAllTheSameElements("Ala");
         ex.updateFirstAndLastElement("X");
+        ex.getAllElementsWithOddIndex();
     }
 }

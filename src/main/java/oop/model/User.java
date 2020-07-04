@@ -1,10 +1,10 @@
 package oop.model;
+
 import oop.model.enums.Gender;
 import oop.model.enums.Role;
+
 import java.time.LocalDateTime;
-import java.util.PrimitiveIterator;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 // wzorzec JavaBeans
 // 1. prywatne pola klasowe
@@ -22,7 +22,7 @@ public class User {
     //płeć jest typem wyliczeniowym
     private Gender gender;
     //zbiór ról
-    private Set<Role> roles = new TreeSet<>();
+    private Set<Role> roles = new HashSet<>(Arrays.asList(Role.ROLE_USER, Role.ROLE_VIEWER));
     private LocalDateTime registrationDateTime = LocalDateTime.now();
     private boolean status = true;
     private boolean removed = false;
@@ -124,7 +124,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +
-                ", gender=" + gender +
+                ", gender=" + gender.getGenderName() +
                 ", roles=" + roles +
                 ", registrationDateTime=" + registrationDateTime +
                 ", status=" + status +

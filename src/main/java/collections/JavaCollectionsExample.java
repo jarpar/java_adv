@@ -32,11 +32,19 @@ public class JavaCollectionsExample {
         List<String> names = new ArrayList<>();
         //utworzenie listy zainicjowanej wartościami
         List<Double> params = new ArrayList<>(Arrays.asList(1.2, 1.44, 1.11, 4.));
+        System.out.println(names);
+        System.out.println(params);
+    }
+
+    public boolean findElement(List<String> names, String name) {
+        return names.contains(name);
     }
 
     public static void main(String[] args) {
         JavaCollectionsExample ex = new JavaCollectionsExample();
         //   ex.arrayOperations();
-
+        ex.listOperations();
+        System.out.println(
+                ex.findElement(new ArrayList<>(Arrays.asList("Jan", "Ala", "Ola", "Ela", "Ala")), "Ala"));
     }
 }

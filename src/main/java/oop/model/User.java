@@ -131,18 +131,20 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
-                ", gender=" + gender +
-                ", roles=" + roles +
-                ", registrationDateTime=" + registrationDateTime +
-                ", status=" + status +
-                ", removed=" + removed +
-                '}';
+        return String.format("| %3d | %15s | %15s | %10s | %10s | %9s | %15s | %15s | %25s | %6s | %6s |",
+                userId, name, lastName, email, password, phone, gender.getGenderName(), roles, registrationDateTime, status, removed);
+//        "User{" +
+//                "userId=" + userId +
+//                ", name='" + name + '\'' +
+//                ", lastName='" + lastName + '\'' +
+//                ", email='" + email + '\'' +
+//                ", password='" + password + '\'' +
+//                ", phone='" + phone + '\'' +
+//                ", gender=" + gender +
+//                ", roles=" + roles +
+//                ", registrationDateTime=" + registrationDateTime +
+//                ", status=" + status +
+//                ", removed=" + removed +
+//                '}';
     }
 }

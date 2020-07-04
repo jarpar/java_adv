@@ -79,6 +79,22 @@ public class JavaCollectionsExample {
         return allRoles;
     }
 
+    public Set<String> getNonUniqueRoles() {
+        Set<String> nonUniqueRoles = new TreeSet<>();
+        nonUniqueRoles.addAll(roles1);
+        nonUniqueRoles.retainAll(roles2);
+        return nonUniqueRoles;
+
+    }
+
+    public Set<String> getUniqueRoles() {
+        Set<String> uniqueRoles = new TreeSet<>();
+        uniqueRoles.addAll(roles1);
+        uniqueRoles.addAll(roles2);
+        uniqueRoles.removeAll(getNonUniqueRoles());
+        return uniqueRoles;
+    }
+
     public static void main(String[] args) {
         JavaCollectionsExample ex = new JavaCollectionsExample();
 //        ex.arrayOperations();
@@ -86,9 +102,13 @@ public class JavaCollectionsExample {
 //        System.out.println("Wynik: " +
 //                ex.findElement(new ArrayList<>(Arrays.asList("Jan","Ala","Ola","Ela","Ala")), "Ala"));
         //ex.removeAllTheSameElements("Ala");
-        ex.updateFirstAndLastElement("X");
-        ex.getAllElementsWithOddIndex();
-        System.out.println();
-        System.out.println("\nAll roles: " + ex.getAllRoles());
+        //ex.updateFirstAndLastElement("X");
+        //ex.getAllElementsWithOddIndex();
+        System.out.print("\nRoles1: " + ex.roles1);
+        System.out.print("\nRoles2: " + ex.roles2);
+        System.out.print("\nAll roles: " + ex.getAllRoles());
+        System.out.print("\nNon unique roles: " + ex.getNonUniqueRoles());
+        System.out.print("\nUnique roles: " + ex.getUniqueRoles());
+
     }
 }

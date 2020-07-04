@@ -117,6 +117,27 @@ public class JavaCollectionsExample {
 
     }
 
+    private Deque<String> messages = new ArrayDeque<>();
+
+    public void sendMessage(String message) {
+        messages.addLast(message);
+        System.out.println(messages);
+    }
+
+    public void receiveMessage() {
+        try {
+
+            while (!messages.isEmpty()) {
+                Thread.currentThread().sleep(2000);//uśpienie programu na 1000ms
+                System.out.println("Odebrano wiadomosć: " + messages.removeFirst());
+                System.out.println("Pozostałę wiadomości: " + messages);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static void main(String[] args) {
         JavaCollectionsExample ex = new JavaCollectionsExample();
 //        ex.arrayOperations();
@@ -136,5 +157,9 @@ public class JavaCollectionsExample {
         ex.generateRomanIntoMap();
         System.out.println("5 dziesiętna to: " + ex.decimalToRoman.get(5));
         System.out.println("II rzymska to: " + ex.romanToDecimal.get("II"));
+        ex.sendMessage("a");
+        ex.sendMessage("b");
+        ex.sendMessage("c");
+        ex.receiveMessage();
     }
 }

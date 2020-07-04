@@ -1,17 +1,17 @@
 package oop.model;
-// wzorzec JavaBeans
-// 1. prywatne pola klasowe
-// 2. metody dostępowe do pól klasowych gettery i settery
-
 import oop.model.enums.Gender;
 import oop.model.enums.Role;
-
 import java.time.LocalDateTime;
 import java.util.PrimitiveIterator;
 import java.util.Set;
 import java.util.TreeSet;
 
+// wzorzec JavaBeans
+// 1. prywatne pola klasowe
+// 2. metody dostępowe do pól klasowych gettery i settery
+// 3. konstruktor-ry klasy modelu
 // klasa modelu -> klasa determinująca strukturę danych
+
 public class User {
     private String name;
     private String lastName;
@@ -104,5 +104,14 @@ public class User {
 
     public void setRemoved(boolean removed) {
         this.removed = removed;
+    }
+
+    public User(String name, String lastName, String email, String password, String phone, Gender gender) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.gender = gender;
     }
 }

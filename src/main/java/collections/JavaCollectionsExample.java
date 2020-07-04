@@ -1,8 +1,6 @@
 package collections;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class JavaCollectionsExample {
     public void arrayOperations() {
@@ -68,6 +66,19 @@ public class JavaCollectionsExample {
         }
     }
 
+    private Set<String> roles1 = new HashSet<>(Arrays.asList("ADMIN", "USER"));
+    private Set<String> roles2 = new HashSet<>(Arrays.asList("USER", "VIEWER", "MODERATOR"));
+
+    //jakie mamy wszystkie role w serwisie www:
+    public Set<String> getAllRoles() {
+        //utworzenie podręcznego zbioru z czasem życia określonym w tej metodzie:
+        Set<String> allRoles = new TreeSet<>();
+        //dodanie ról do tego zbioru pochodzących z zbiorów roles1 i roles2:
+        allRoles.addAll(roles1);
+        allRoles.addAll(roles2);
+        return allRoles;
+    }
+
     public static void main(String[] args) {
         JavaCollectionsExample ex = new JavaCollectionsExample();
 //        ex.arrayOperations();
@@ -77,5 +88,7 @@ public class JavaCollectionsExample {
         //ex.removeAllTheSameElements("Ala");
         ex.updateFirstAndLastElement("X");
         ex.getAllElementsWithOddIndex();
+        System.out.println();
+        System.out.println("\nAll roles: " + ex.getAllRoles());
     }
 }

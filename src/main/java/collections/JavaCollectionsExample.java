@@ -95,6 +95,28 @@ public class JavaCollectionsExample {
         return uniqueRoles;
     }
 
+    private Map<Integer, String> decimalToRoman = new HashMap<>();
+    private Map<String, Integer> romanToDecimal = new HashMap<>();
+
+    public void generateValuesIntoMap() {
+        decimalToRoman.put(0, "0");
+        decimalToRoman.put(1, "I");
+        decimalToRoman.put(2, "II");
+        decimalToRoman.put(3, "III");
+        decimalToRoman.put(4, "IV");
+        decimalToRoman.put(5, "V");
+        System.out.println(decimalToRoman);
+    }
+
+    public void generateRomanIntoMap() {
+        for (Integer key : decimalToRoman.keySet()
+        ) {
+            romanToDecimal.put(decimalToRoman.get(key), key);
+        }
+        System.out.println(romanToDecimal);
+
+    }
+
     public static void main(String[] args) {
         JavaCollectionsExample ex = new JavaCollectionsExample();
 //        ex.arrayOperations();
@@ -109,6 +131,8 @@ public class JavaCollectionsExample {
         System.out.print("\nAll roles: " + ex.getAllRoles());
         System.out.print("\nNon unique roles: " + ex.getNonUniqueRoles());
         System.out.print("\nUnique roles: " + ex.getUniqueRoles());
-
+        System.out.println();
+        ex.generateValuesIntoMap();
+        ex.generateRomanIntoMap();
     }
 }

@@ -128,4 +128,21 @@ public class User {
         this.gender = gender;
         globalId++;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", gender=" + gender +
+                ", roles=" + roles +
+                ", registrationDateTime=" + registrationDateTime +
+                ", status=" + status +
+                ", removed=" + removed +
+                '}';
+    }
 }

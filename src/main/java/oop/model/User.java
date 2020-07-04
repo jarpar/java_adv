@@ -10,6 +10,7 @@ import java.util.TreeSet;
 // 1. prywatne pola klasowe
 // 2. metody dostępowe do pól klasowych gettery i settery
 // 3. konstruktor-ry klasy modelu
+// 4. toString
 // klasa modelu -> klasa determinująca strukturę danych
 
 public class User {
@@ -113,5 +114,21 @@ public class User {
         this.password = password;
         this.phone = phone;
         this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", gender=" + gender +
+                ", roles=" + roles +
+                ", registrationDateTime=" + registrationDateTime +
+                ", status=" + status +
+                ", removed=" + removed +
+                '}';
     }
 }

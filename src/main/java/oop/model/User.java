@@ -14,6 +14,9 @@ import java.util.*;
 // klasa modelu -> klasa determinująca strukturę danych
 
 public class User {
+    //składowa statyczna - jedna dla wszystkich instancji klasy
+    private static int globalId = 1;
+    private int userId;
     private String name;
     private String lastName;
     private String email;
@@ -26,6 +29,14 @@ public class User {
     private LocalDateTime registrationDateTime = LocalDateTime.now();
     private boolean status = true;
     private boolean removed = false;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getName() {
         return name;
@@ -108,27 +119,13 @@ public class User {
     }
 
     public User(String name, String lastName, String email, String password, String phone, Gender gender) {
+        this.userId = globalId;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.phone = phone;
         this.gender = gender;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
-                ", gender=" + gender.getGenderName() +
-                ", roles=" + roles +
-                ", registrationDateTime=" + registrationDateTime +
-                ", status=" + status +
-                ", removed=" + removed +
-                '}';
+        globalId++;
     }
 }

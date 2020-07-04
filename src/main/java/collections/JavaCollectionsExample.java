@@ -134,5 +134,7 @@ public class JavaCollectionsExample {
         System.out.println();
         ex.generateValuesIntoMap();
         ex.generateRomanIntoMap();
+        System.out.println("5 dziesiętna to: " + ex.decimalToRoman.get(5));
+        System.out.println("II rzymska to: " + ex.romanToDecimal.get("II"));
     }
 }

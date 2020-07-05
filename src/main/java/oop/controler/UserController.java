@@ -8,10 +8,11 @@ import java.util.List;
 import java.util.Set;
 
 //Klasa kontrolera - odpowiedzialna za obsługę i implementację logiki biznesowej aplikacji
-public class UserController implements UserControllerTemplate{
+public class UserController implements UserControllerTemplate {
     @Override
     public void registerUser(User user) {
-
+        users.add(user);
+        System.out.println("Dodano nowego użytkownika: " + user.getEmail());
     }
 
     @Override

@@ -6,6 +6,7 @@ import oop.model.User;
 import oop.model.enums.Gender;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import static oop.controler.UserControllerTemplate.users;
 
@@ -44,6 +45,11 @@ public class Run {
                 Gender gender = genderInput.equals("M") ? Gender.MAN : Gender.WOMAN;
                 System.out.println("Podaj telefon (000-000-000):");
                 String phone = scanner.nextLine();
+                //walidacja na podstawie regex-ów
+                String phonePattern = "^[0-9]{3}-[0-9]{3}-[0-9]{3}$";
+                if (!Pattern.matches(phonePattern, phone)) {
+                    System.out.println("Błędny numer telefonu!");
+                }
                 uc.registerUser(new User(name, lastName, email, password, phone, gender));
 
             } else if (choice.equals("2")) {

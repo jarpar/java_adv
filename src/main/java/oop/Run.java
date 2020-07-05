@@ -64,11 +64,11 @@ public class Run {
             } else if (choice.equals("2")) {
                 uc.findAllUsers().forEach(user -> System.out.println(user));
             } else if (choice.equals("3")) {
-                System.out.println("Podaj login Id:");
-                String tempEmail = scanner.nextLine();
+                System.out.println("Podaj email:");
+                String email = scanner.nextLine();
                 System.out.println("Podaj hasło:");
-                String tempPassword = scanner.nextLine();
-                System.out.println(uc.loginUser(tempEmail, tempPassword));
+                String password = scanner.nextLine();
+                uc.loginUser(email, password);
             } else if (choice.equals("Q")) {
                 return;
             } else {

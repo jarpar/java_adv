@@ -37,6 +37,7 @@ public abstract class InputOutputController {
                 String[] userLine = scanner.nextLine().split(";");
                 UserControllerTemplate.users.add(new User(userLine[1], userLine[2], userLine[3], userLine[4], userLine[5], userLine[6].equals("MAN") ? Gender.MAN : Gender.WOMAN));
             }
+            scanner.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

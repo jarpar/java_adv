@@ -1,7 +1,6 @@
 package oop;
 
 import oop.controler.UserController;
-import oop.controler.UserControllerTemplate;
 import oop.model.User;
 import oop.model.enums.Gender;
 

@@ -14,11 +14,11 @@ import java.util.Set;
 public interface UserControllerTemplate {
     // pole statyczne finalne
     List<User> users = new ArrayList<>(
-            Arrays.asList(
-                    new User("name1", "lastName1", "email1@server.com", "password1", "111-111-111", Gender.MAN),
-                    new User("name2", "lastName2", "email2@server.com", "password2", "222-222-222", Gender.WOMAN),
-                    new User("name3", "lastName3", "email3@server.com", "password3", "333-333-333", Gender.MAN)
-            )
+//            Arrays.asList(
+//                    new User("name1", "lastName1", "email1@server.com", "password1", "111-111-111", Gender.MAN),
+//                    new User("name2", "lastName2", "email2@server.com", "password2", "222-222-222", Gender.WOMAN),
+//                    new User("name3", "lastName3", "email3@server.com", "password3", "333-333-333", Gender.MAN)
+//            )
     );
 
     // metoda abstrakcyjna -> metoda nieposiadająca ciała - implementacji

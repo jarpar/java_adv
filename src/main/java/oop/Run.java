@@ -49,9 +49,9 @@ public class Run {
                 String phonePattern = "^[0-9]{3}-[0-9]{3}-[0-9]{3}$";
                 if (!Pattern.matches(phonePattern, phone)) {
                     System.out.println("Błędny numer telefonu!");
+                    continue;
                 }
                 uc.registerUser(new User(name, lastName, email, password, phone, gender));
-
             } else if (choice.equals("2")) {
                 uc.findAllUsers().forEach(user -> System.out.println(user));
             } else if (choice.equals("3")) {

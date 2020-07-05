@@ -15,9 +15,9 @@ public interface UserControllerTemplate {
     // pole statyczne finalne
     List<User> users = new ArrayList<>(
             Arrays.asList(
-                    new User("name1", "lastName1", "email1", "password1", "phone1", Gender.MAN),
-                    new User("name2", "lastName2", "email2", "password2", "phone2", Gender.WOMAN),
-                    new User("name3", "lastName3", "email3", "password3", "phone3", Gender.MAN)
+                    new User("name1", "lastName1", "email1@server.com", "password1", "111-111-111", Gender.MAN),
+                    new User("name2", "lastName2", "email2@server.com", "password2", "222-222-222", Gender.WOMAN),
+                    new User("name3", "lastName3", "email3@server.com", "password3", "333-333-333", Gender.MAN)
             )
     );
 

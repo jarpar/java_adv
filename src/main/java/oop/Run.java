@@ -66,7 +66,6 @@ public class Run {
             } else if (choice.equals("3")) {
                 System.out.println("Podaj login Id:");
                 String tempEmail = scanner.nextLine();
-                if
                 System.out.println("Podaj hasło:");
                 String tempPassword = scanner.nextLine();
                 System.out.println(uc.loginUser(tempEmail, tempPassword));

@@ -11,25 +11,30 @@ import java.util.Set;
 
 //Klasa kontrolera - odpowiedzialna za obsługę i implementację logiki biznesowej aplikacji
 public class UserController implements UserControllerTemplate {
-    @Override
-    public void registerUser(User user) {
-        //szyfrowanie hasła
+    private String passwordEncoder(String password) {
         try {
+            // Obiekt do szyfrowania hasła algorytmem MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
-            // operacja szyfrownia zwraca tablicę liczb naturalnych
-            byte[] passwordHash = md.digest(user.getPassword().getBytes());
-            // zapisanie tablicy liczb w typie String
+            // Operacja szyfrowania zwraca tablicę liczb naturalnych
+            byte[] passwordHash = md.digest(password.getBytes());
+            // Zapisanie tablicy liczb w typie String
             String passwordHashTxt = "";
             for (byte digit : passwordHash) {
-                passwordHashTxt += digit;
+                passwordHashTxt += String.format("%x", digit);
             }
-            // aktualizacja hasła w modelu user
-            user.setPassword(passwordHashTxt);
-            users.add(user);
-            System.out.println("Dodano nowego użytkownika: " + user.getEmail());
+            return passwordHashTxt;
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
+            return null;
         }
+    }
+
+    @Override           // adnotacja - przysłniecie
+    public void registerUser(User user) {
+        // Aktualizacja hasła w modelu user
+        user.setPassword(passwordEncoder(user.getPassword()));
+        users.add(user);
+        System.out.println("Dodano nowego użytkownika: " + user.getEmail());
     }
 
     @Override
@@ -46,12 +51,27 @@ public class UserController implements UserControllerTemplate {
 
     @Override
     public User findUserById(int userId) {
+        for (User user : users) {
+            if (user.getUserId() == userId) {
+                System.out.println("Znaleziono użytkownika: " + user);
+                return user;
+            }
+        }
+        System.out.println("Nie znaleziono użytkownika o id=" + userId);
         return null;
     }
 
     @Override
     public void updateUserPassword(int userId, String newPassword) {
-
+        // 1. Ppobranie użytkownika z listy na podstawie userId
+        User user = findUserById(userId);
+        //2.sprawdzenie czy user istnieje
+        if (user != null) {
+            // 3. Zmiana hasła i zapisanie hash-u tego hasła
+            user.setPassword(passwordEncoder(newPassword));
+        } else {
+            System.out.println("Nie zmieniono hasła!");
+        }
     }
 
     @Override

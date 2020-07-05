@@ -41,14 +41,19 @@ public class Run {
                 System.out.println("Podaj hasło");
                 String password = scanner.nextLine();
                 System.out.println("Podaj płeć (M/K):");
-                String genderInput = scanner.nextLine();
+                String genderInput = scanner.nextLine().toUpperCase();
                 Gender gender = genderInput.equals("M") ? Gender.MAN : Gender.WOMAN;
                 System.out.println("Podaj telefon (000-000-000):");
                 String phone = scanner.nextLine();
                 //walidacja na podstawie regex-ów
                 String phonePattern = "^[0-9]{3}-[0-9]{3}-[0-9]{3}$";
+                String genderPattern = "^[MK]{1}$";
                 if (!Pattern.matches(phonePattern, phone)) {
                     System.out.println("Błędny numer telefonu!");
+                    continue;
+                }
+                if (!Pattern.matches(genderPattern, genderInput)) {
+                    System.out.println("Błędnie wprowadzona płeć!");
                     continue;
                 }
                 uc.registerUser(new User(name, lastName, email, password, phone, gender));

@@ -34,7 +34,13 @@ public class UserController implements UserControllerTemplate {
 
     @Override
     public boolean loginUser(String email, String password) {
-        return false;
+        for (User user : users
+        ) {
+            if (user.getEmail().equals(email) && user.getPassword().equals(passwordEncoder(password))) {
+                System.out.println("Zalogowano użytkownika: " + user.getEmail());
+            }
+        }
+        return true;
     }
 
 

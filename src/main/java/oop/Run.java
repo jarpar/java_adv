@@ -38,14 +38,16 @@ public class Run {
                 System.out.println("Podaj hasło");
                 String password = scanner.nextLine();
                 System.out.println("Podaj płeć (M/K):");
-                String gender = scanner.nextLine();
+                String genderInput = scanner.nextLine();
+                Gender gender = genderInput.equals("M") ? Gender.MAN : Gender.WOMAN;
                 System.out.println("Podaj telefon (000-000-000):");
                 String phone = scanner.nextLine();
+                uc.registerUser(new User(name, lastName, email, password, phone, gender));
 
             } else if (choice.equals("2")) {
 
             } else if (choice.equals("q")) {
-
+                break;
             } else {
                 System.out.println("Błędny wybór");
             }

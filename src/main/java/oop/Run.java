@@ -7,6 +7,8 @@ import oop.model.enums.Gender;
 
 import java.util.Scanner;
 
+import static oop.controler.UserControllerTemplate.users;
+
 public class Run {
     public static void main(String[] args) {
 //        User u1 = new User("name1", "lastName1", "email1", "password1", "phone1", Gender.MAN);
@@ -22,11 +24,11 @@ public class Run {
 //            System.out.println(user);
 //        }
         // trzeci sposób - stream wyrażenia lambda java 8 i wyżej
-        UserControllerTemplate.users.forEach(user -> System.out.println(user));
+        users.forEach(user -> System.out.println(user));
         UserController uc = new UserController();
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("Co chcesz zrobic? \n1. Rejestracja \n2. Logowanie \nQ. Wyjście");
+            System.out.println("Co chcesz zrobic? \n1. Rejestracja \n2. Lista użytkowników \n3. Logowanie \nQ. Wyjście");
             String choice = scanner.nextLine().toUpperCase();
             if (choice.equals("1")) {
                 System.out.println("Podaj imię:");
@@ -45,9 +47,15 @@ public class Run {
                 uc.registerUser(new User(name, lastName, email, password, phone, gender));
 
             } else if (choice.equals("2")) {
-
-            } else if (choice.equals("q")) {
-                break;
+                uc.findAllUsers().forEach(user -> System.out.println(user));
+            } else if (choice.equals("3")) {
+                System.out.println("Podaj login Id:");
+                String tempId = scanner.nextLine();
+                System.out.println("Podaj hasło:");
+                String tempPassword = scanner.nextLine();
+                System.out.println(uc.loginUser(tempId, tempPassword));
+            } else if (choice.equals("Q")) {
+                return;
             } else {
                 System.out.println("Błędny wybór");
             }

@@ -20,6 +20,7 @@ public class UserController implements UserControllerTemplate {
         return false;
     }
 
+
     @Override
     public User findUserById(int userId) {
         return null;
@@ -42,7 +43,7 @@ public class UserController implements UserControllerTemplate {
 
     @Override
     public List<User> findAllUsers() {
-        return null;
+        return users;
     }
 
     @Override

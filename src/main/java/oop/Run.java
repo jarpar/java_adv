@@ -1,6 +1,6 @@
 package oop;
 
-import oop.controler.UserController;
+import oop.controller.UserController;
 import oop.model.User;
 import oop.model.enums.Gender;
 
@@ -8,7 +8,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import static oop.controler.UserControllerTemplate.users;
+import static oop.controller.UserControllerTemplate.users;
 
 public class Run {
     public static void main(String[] args) {

@@ -1,7 +1,6 @@
-package oop.controler;
+package oop.controller;
 
-import oop.controler.UserControllerTemplate;
-import oop.controler.enums.UserField;
+import oop.controller.enums.UserField;
 import oop.model.User;
 import oop.model.enums.Role;
 

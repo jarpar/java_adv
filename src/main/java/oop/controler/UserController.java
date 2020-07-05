@@ -23,12 +23,13 @@ public class UserController implements UserControllerTemplate {
             for (byte digit : passwordHash) {
                 passwordHashTxt += digit;
             }
+            // aktualizacja hasła w modelu user
+            user.setPassword(passwordHashTxt);
             users.add(user);
             System.out.println("Dodano nowego użytkownika: " + user.getEmail());
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override

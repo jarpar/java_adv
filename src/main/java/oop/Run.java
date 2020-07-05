@@ -87,6 +87,7 @@ public class Run extends InputOutputController {
                     continue;
                 }
             } else if (choice.equals("Q")) {
+                run.saveUserToFile();
                 return;
             } else {
                 System.out.println("Błędny wybór");

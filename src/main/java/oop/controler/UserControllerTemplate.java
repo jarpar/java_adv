@@ -1,5 +1,6 @@
 package oop.controler;
 
+import oop.controler.enums.UserField;
 import oop.model.User;
 import oop.model.enums.Role;
 
@@ -32,6 +33,6 @@ public interface UserControllerTemplate {
     List<User> findAllUsers();
 
     //  wypisanie użytkowników posortowanych po argumencie
-    List<User> findAllUsersOrderByArg();
+    List<User> findAllUsersOrderByArg(UserField userField, boolean asc);
 
 }

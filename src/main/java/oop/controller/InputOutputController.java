@@ -1,6 +1,7 @@
 package oop.controller;
 
 import oop.model.User;
+import oop.model.enums.Gender;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,6 +24,7 @@ public abstract class InputOutputController {
                         user.isRemoved()
                 ));
             }
+            pw.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -32,7 +34,8 @@ public abstract class InputOutputController {
         try {
             Scanner scanner = new Scanner(new File(usersFilePath));
             while (scanner.hasNextLine()) {
-
+                String[] userLine = scanner.nextLine().split(";");
+                UserControllerTemplate.users.add(new User(userLine[1], userLine[2], userLine[3], userLine[4], userLine[5], userLine[6].equals("MAN") ? Gender.MAN : Gender.WOMAN));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

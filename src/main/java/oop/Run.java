@@ -1,5 +1,6 @@
 package oop;
 
+import oop.controller.InputOutputController;
 import oop.controller.UserController;
 import oop.model.User;
 import oop.model.enums.Gender;
@@ -10,7 +11,7 @@ import java.util.regex.Pattern;
 
 import static oop.controller.UserControllerTemplate.users;
 
-public class Run {
+public class Run extends InputOutputController {
     public static void main(String[] args) {
 //        User u1 = new User("name1", "lastName1", "email1", "password1", "phone1", Gender.MAN);
 //        User u2 = new User("name2", "lastName2", "email2", "password2", "phone2", Gender.WOMAN);
@@ -25,9 +26,13 @@ public class Run {
 //            System.out.println(user);
 //        }
         // trzeci sposób - stream wyrażenia lambda java 8 i wyżej
-        users.forEach(user -> System.out.println(user));
+
+        //users.forEach(user -> System.out.println(user));
         UserController uc = new UserController();
         Scanner scanner = new Scanner(System.in);
+        Run run = new Run();
+        run.readUsersFromFile();
+
         while (true) {
             System.out.println("Co chcesz zrobic? \n1.Rejestracja \n2.Lista użytkowników \n3.Logowanie \n4.Zmień hasło \nQ.Wyjście");
             String choice = scanner.nextLine().toUpperCase();

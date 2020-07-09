@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public abstract class InputOutputController {
     // globalna ścieżka bezpośednia do pliku
-    private String usersFilePath = "/home/user/java_adv/src/main/resources/file/users.csv";
+    private String usersFilePath = "src/main/resources/file/users.csv";
 
     public void saveUserToFile() {
         try {

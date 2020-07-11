@@ -141,6 +141,7 @@ public class User {
         this.registrationDateTime = registrationDateTime;
         this.status = status;
         this.removed = removed;
+        globalId++;
     }
 
     @Override

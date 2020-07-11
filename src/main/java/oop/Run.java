@@ -34,7 +34,7 @@ public class Run extends InputOutputController {
         run.readUsersFromFile();
 
         while (true) {
-            System.out.println("Co chcesz zrobic? \n1.Rejestracja \n2.Lista użytkowników \n3.Logowanie \n4.Zmień hasło \n5.Usuń użytkownika\nQ.Wyjście");
+            System.out.println("Co chcesz zrobic? \n1.Rejestracja \n2.Lista użytkowników \n3.Logowanie \n4.Zmień hasło \n5.Usuń użytkownika \n6. Sortuj po adresie e-mail \nQ.Wyjście");
             String choice = scanner.nextLine().toUpperCase();
             if (choice.equals("1")) {
                 System.out.println("Podaj imię:");
@@ -84,6 +84,27 @@ public class Run extends InputOutputController {
                     uc.updateUserPassword(userId, newPassword);
                 } catch (InputMismatchException e) {
                     System.out.println("Błędny id");
+                    continue;
+                }
+            } else if (choice.equals("5")) {
+                try {
+                    System.out.println("Podaj id użytkownika do usunięcia:");
+                    int userId = Integer.valueOf(scanner.nextLine());
+                    uc.deleteUserById(userId);
+                } catch (InputMismatchException e) {
+                    System.out.println("Błędny id");
+                    continue;
+                }
+            } else if (choice.equals("6")) {
+                try {
+                    System.out.println("Sortować rosnąco/ malejąco [ASC/DESC]");
+                    String sortVal = scanner.nextLine().toUpperCase();
+                    if (sortVal.equals("DESC")) {
+                        uc.findAllUsersOrderByEmail(false).forEach(user -> System.out.println(user));
+                    } else
+                        uc.findAllUsersOrderByEmail(true).forEach(user -> System.out.println(user));
+                } catch (InputMismatchException e) {
+                    System.out.println("Błędny tryb sortowania!");
                     continue;
                 }
             } else if (choice.equals("Q")) {

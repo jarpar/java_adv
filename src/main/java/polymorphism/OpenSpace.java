@@ -5,6 +5,14 @@ public class OpenSpace extends Company {
     private String openSpaceName; // nazwa openspac-u
     private int openSpaceCapacity; // liczba pracowników openspac-u
 
+    public OpenSpace(String companyName, int roomsQuantity, int openSpaceNo, String openSpaceName, int openSpaceCapacity) {
+        super(companyName, roomsQuantity);
+        this.openSpaceNo = openSpaceNo;
+        this.openSpaceName = openSpaceName;
+        this.openSpaceCapacity = openSpaceCapacity;
+        System.out.println("Jestem z konstruktora klasy OpenSpace");
+    }
+
     public int getOpenSpaceNo() {
         return openSpaceNo;
     }

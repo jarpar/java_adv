@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SimpleStreamApi {
-    List<Double> numbers = new ArrayList<>(Arrays.asList(15.22, 2.333, 3., 4.55, 6.4444));
+    List<Double> numbers = new ArrayList<>(Arrays.asList(15.22, -2.333, 3., -4.55, 6.4444));
 
     // metoda wypisująca wszystkie liczby jedna pod drugą
     public void getAllNumbers() {

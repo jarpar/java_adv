@@ -5,6 +5,15 @@ public class OpenSpace extends Company {
     private String openSpaceName; // nazwa openspac-u
     private int openSpaceCapacity; // liczba pracowników openspac-u
 
+    @Override
+    public String toString() {
+        return "OpenSpace{" +
+                "openSpaceNo=" + openSpaceNo +
+                ", openSpaceName='" + openSpaceName + '\'' +
+                ", openSpaceCapacity=" + openSpaceCapacity +
+                "} " + super.toString();
+    }
+
     public OpenSpace(String companyName, int roomsQuantity, int openSpaceNo, String openSpaceName, int openSpaceCapacity) {
         super(companyName, roomsQuantity);
         this.openSpaceNo = openSpaceNo;

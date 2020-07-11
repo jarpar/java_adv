@@ -4,6 +4,14 @@ public class Company {
     private String companyName;
     private int roomsQuantity; // ilość pomieszczeń/pokoi
 
+    @Override
+    public String toString() {
+        return "Company{" +
+                "companyName='" + companyName + '\'' +
+                ", roomsQuantity=" + roomsQuantity +
+                '}';
+    }
+
     public Company(String companyName, int roomsQuantity) {
         this.companyName = companyName;
         this.roomsQuantity = roomsQuantity;

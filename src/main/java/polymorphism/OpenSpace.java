@@ -7,7 +7,6 @@ public class OpenSpace extends Company {
 
     @Override
     public String toString() {
-        calcFreeRooms();
         return "OpenSpace{" +
                 "openSpaceNo=" + openSpaceNo +
                 ", openSpaceName='" + openSpaceName + '\'' +

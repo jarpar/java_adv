@@ -129,6 +129,20 @@ public class User {
         globalId++;
     }
 
+    public User(int userId, String name, String lastName, String email, String password, String phone, Gender gender, Set<Role> roles, LocalDateTime registrationDateTime, boolean status, boolean removed) {
+        this.userId = userId;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.gender = gender;
+        this.roles = roles;
+        this.registrationDateTime = registrationDateTime;
+        this.status = status;
+        this.removed = removed;
+    }
+
     @Override
     public String toString() {
         return String.format("| %3d | %15s | %15s | %10s | %15s | %11s | %10s | %40s | %25s | %6s | %6s |",

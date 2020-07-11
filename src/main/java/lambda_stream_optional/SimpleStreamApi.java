@@ -17,11 +17,19 @@ public class SimpleStreamApi {
     public void getSeparatedNumbers(String separator) {
         System.out.println(numbers.stream().map(number -> String.valueOf(number)).collect(Collectors.joining(separator)));
     }
-    // metoda wypiująca liczby zaokrąglone do 2 miejsc po przecinku
+
+    // metoda wypiująca liczby zaokrąglone do OKREŚLONEJ  liczby miejsc po przecinku
+    public void getShortNumers(int precision) {
+        try {
+            numbers.stream().forEach(number -> System.out.printf("%." + precision + "f\t", number));
+        } catch (Exception e) {
+        }
+    }
 
     public static void main(String[] args) {
         SimpleStreamApi ssa = new SimpleStreamApi();
         ssa.getAllNumbers();
         ssa.getSeparatedNumbers(";");
+        ssa.getShortNumers(2);
     }
 }

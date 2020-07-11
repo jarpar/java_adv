@@ -34,7 +34,7 @@ public class Run extends InputOutputController {
         run.readUsersFromFile();
 
         while (true) {
-            System.out.println("Co chcesz zrobic? \n1.Rejestracja \n2.Lista użytkowników \n3.Logowanie \n4.Zmień hasło \nQ.Wyjście");
+            System.out.println("Co chcesz zrobic? \n1.Rejestracja \n2.Lista użytkowników \n3.Logowanie \n4.Zmień hasło \n5.Usuń użytkownika\nQ.Wyjście");
             String choice = scanner.nextLine().toUpperCase();
             if (choice.equals("1")) {
                 System.out.println("Podaj imię:");

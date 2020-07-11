@@ -45,6 +45,6 @@ public interface UserControllerTemplate {
     List<User> findAllUsers();
 
     //  wypisanie użytkowników posortowanych po argumencie
-    List<User> findAllUsersOrderByArg(UserField userField, boolean asc);
+    List<User> findAllUsersOrderByEmail(boolean asc);
 
 }

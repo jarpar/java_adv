@@ -6,8 +6,10 @@ import oop.model.enums.Role;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 // Klasa controllera - odpowiedzialna za obsługę i implementację logiki biznesowej aplikacji
 public class UserController implements UserControllerTemplate {
@@ -86,17 +88,35 @@ public class UserController implements UserControllerTemplate {
 
     @Override
     public void deleteUserById(int userId) {
+        for (User user : users
+        )
+            if (user.getUserId() == userId) {
+                users.remove(user);
+                System.out.println("Usunięto użytkownka " + user.getEmail());
+                break;
 
+            }
+        if (findUserById(userId) == null) {
+            System.out.println("Nie ma użytkownika o id " + userId);
+        }
     }
 
     @Override
     public void updateRole(int userId, Set<Role> newRoles) {
-
+        //todo
     }
 
 
     @Override
-    public List<User> findAllUsersOrderByArg(UserField userField, boolean asc) {
-        return null;
+    public List<User> findAllUsersOrderByEmail(boolean asc) {
+        if (asc) {
+            return users.stream()   //zamiana List<User> na Stream<User>
+                    .sorted(Comparator.comparing(user -> user.getEmail()))  // SortedStream<User>
+                    .collect(Collectors.toList());                          // zamiana SortedStream<User> -> List<User>
+        } else {
+            return users.stream()   //zamiana List<User> na Stream<User>
+                    .sorted(Comparator.comparing(User::getEmail).reversed())  // SortedStream<User>
+                    .collect(Collectors.toList());                          // zamiana SortedStream<User> -> List<User>
+        }
     }
 }

@@ -15,5 +15,6 @@ public class Main {
 //        System.out.printf("Firma %s (ilość pomieszczeń: %d) Open space: %d %s (pojemność: %d)",
 //                os1.getCompanyName(), os1.getRoomsQuantity(), os1.getOpenSpaceNo(), os1.getOpenSpaceName(), os1.getOpenSpaceCapacity());
         Company company = new Company("ABC", 10);
+        OpenSpace os1 = new OpenSpace("QWERTY", 10, 1, "Londyn", 100);
     }
 }

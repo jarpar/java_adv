@@ -14,6 +14,12 @@ public class OpenSpace extends Company {
                 "} " + super.toString();
     }
 
+    //metoda do kalkulacji wilnych pokoi w firmie
+    public int calcFreeRooms() {
+        System.out.println("Pozostało wolnych: " + (super.getRoomsQuantity() - 1) + " pokoi.");
+        return super.getRoomsQuantity() - 1;
+    }
+
     public OpenSpace(String companyName, int roomsQuantity, int openSpaceNo, String openSpaceName, int openSpaceCapacity) {
         super(companyName, roomsQuantity);
         this.openSpaceNo = openSpaceNo;

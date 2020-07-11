@@ -14,7 +14,7 @@ public class MainPolymorphism {
     public static void main(String[] args) {
         Company openSpace1 = new OpenSpace("X", 913, 11, "A", 110);
         System.out.println(openSpace1);
-        Company openSpace2 = new OpenSpace("Y", 123, 21, "AB", 120);
+        OpenSpace openSpace2 = new OpenSpace("Y", 123, 21, "AB", 120);
         System.out.println(openSpace2);
         System.out.println("===========================================================");
         HasMooreRooms(openSpace1, openSpace2);

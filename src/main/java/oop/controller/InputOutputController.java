@@ -54,11 +54,16 @@ public abstract class InputOutputController {
                         Integer.valueOf(userLine[8].substring(14, 16)));
 
                 UserControllerTemplate.users.add(
-                        new User(Integer.valueOf(userLine[0])), userLine[1], userLine[2], userLine[3], userLine[4], userLine[5],
-                        userLine[6].equals("MAN") ? Gender.MAN : Gender.WOMAN),
-                        roles, //role
-                        userLine[8], //date time
-                        Boolean.valueOf(userLine[9]), Boolean.valueOf(userLine[10]);
+                        new User(Integer.valueOf(userLine[0]),
+                                userLine[1],
+                                userLine[2],
+                                userLine[3],
+                                userLine[4],
+                                userLine[5],
+                                userLine[6].equals("MAN") ? Gender.MAN : Gender.WOMAN,
+                                roles, //role
+                                registrationDateTime, //date time
+                                Boolean.valueOf(userLine[9]), Boolean.valueOf(userLine[10])));
             }
             scanner.close();
         } catch (FileNotFoundException e) {

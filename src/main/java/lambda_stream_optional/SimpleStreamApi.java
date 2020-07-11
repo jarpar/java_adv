@@ -58,6 +58,5 @@ public class SimpleStreamApi {
         System.out.println(ssa.getSumOfAllNo());
         System.out.println(ssa.getMax());
         System.out.println(ssa.getMin());
-        ;
     }
 }

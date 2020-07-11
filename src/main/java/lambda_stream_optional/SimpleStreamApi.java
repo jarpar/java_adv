@@ -50,6 +50,11 @@ public class SimpleStreamApi {
         }
     }
 
+    //metoda wypisująca liczby większe niż wartość w argumencie
+    public void getNoGreaterThanArg(double treshold) {
+        numbers.stream().filter(number -> number > treshold).forEach(numbers -> System.out.print(numbers + " "));
+    }
+
     public static void main(String[] args) {
         SimpleStreamApi ssa = new SimpleStreamApi();
         ssa.getAllNumbers();
@@ -58,5 +63,6 @@ public class SimpleStreamApi {
         System.out.println(ssa.getSumOfAllNo());
         System.out.println(ssa.getMax());
         System.out.println(ssa.getMin());
+        ssa.getNoGreaterThanArg(2);
     }
 }

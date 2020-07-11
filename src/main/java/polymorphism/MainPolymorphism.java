@@ -1,5 +1,8 @@
 package polymorphism;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainPolymorphism {
     public static void HasMooreRooms(Company c1, Company c2) {
         if (c1.getRoomsQuantity() > c2.getRoomsQuantity()) {
@@ -18,5 +21,6 @@ public class MainPolymorphism {
         System.out.println(openSpace2);
         System.out.println("===========================================================");
         HasMooreRooms(openSpace1, openSpace2);
+        List<String> names = new ArrayList<>();
     }
 }

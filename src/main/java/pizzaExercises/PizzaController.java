@@ -62,6 +62,11 @@ public class PizzaController {
                 .forEach(pizza -> System.out.println(pizza.getName() + " - " + calculatePizzaPrice(pizza) + " PLN"));
     }
 
+    public List<Pizza> iLikeMeat() {
+        return Arrays.stream(Pizza.values()).filter(pizza -> pizza.getIngredients().stream()
+                .anyMatch(Ingredient::isMeat)).collect(Collectors.toList());
+    }
+
 
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();

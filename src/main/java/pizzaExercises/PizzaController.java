@@ -85,18 +85,24 @@ public class PizzaController {
     // menu:
     // nazwa (składniki) - cena zł
     public String formatedMenu() {
+        Random random = new Random();
+        int randomIndex = random.nextInt(Pizza.values().length);
+        Pizza pizzaOfTheDay = Pizza.values()[randomIndex];
+
         return Arrays.stream(Pizza.values())
                 .map(pizza -> String.format(
-                        "%-20s (%-88s) %-7s %-13s - %5.2f zł",
+                        "%-20s (%-88s) %-7s %-13s - %5.2f zł %1s",
                         pizza.getName(),
                         pizza.getIngredients().stream().map(ingredient -> ingredient.getName()).collect(Collectors.joining(", ")),
                         pizza.getIngredients().stream().anyMatch(Ingredient::isSpicy) ? "ostra" : "łagodna",
                         pizza.getIngredients().stream().anyMatch(Ingredient::isMeat) ? "mięsna" : "wegetariańska",
-                        Double.valueOf(calculatePizzaPrice(pizza))
+                        pizza.equals(pizzaOfTheDay) ? Double.valueOf(calculatePizzaPrice(pizza)) * 0.9 : Double.valueOf(calculatePizzaPrice(pizza)),
+                        pizza.equals(pizzaOfTheDay) ? "*" : ""
                         )
                 )
                 .collect(Collectors.joining("\n"));
     }
+
 
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();

@@ -75,7 +75,6 @@ public class PizzaController {
 
     public Map<Integer, List<Pizza>> groupByPrice() {
         return Arrays.stream(Pizza.values()).collect(Collectors.groupingBy(this::calculatePizzaPrice));
-        //        return InMemoryData.users.stream().collect(Collectors.groupingBy(user -> user.getRoles()));
     }
 
     public static void main(String[] args) {

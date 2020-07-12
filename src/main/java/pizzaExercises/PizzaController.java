@@ -87,7 +87,7 @@ public class PizzaController {
     public String formatedMenu() {
         return Arrays.stream(Pizza.values())
                 .map(pizza -> String.format(
-                        "%20s (%-87s) %7s %13s - %5.2f zł",
+                        "%-20s (%-88s) %-7s %-13s - %5.2f zł",
                         pizza.getName(),
                         pizza.getIngredients().stream().map(ingredient -> ingredient.getName()).collect(Collectors.joining(", ")),
                         pizza.getIngredients().stream().anyMatch(Ingredient::isSpicy) ? "ostra" : "łagodna",

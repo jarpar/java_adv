@@ -73,6 +73,10 @@ public class PizzaController {
                 .anyMatch(Ingredient::isMeat)).sorted(Comparator.comparing(this::calculateMeatIngredients).reversed()).collect(Collectors.toList());
     }
 
+    public Map<Integer, List<Pizza>> groupByPrice() {
+        return Arrays.stream(Pizza.values()).collect(Collectors.groupingBy(this::calculatePizzaPrice));
+        //        return InMemoryData.users.stream().collect(Collectors.groupingBy(user -> user.getRoles()));
+    }
 
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
@@ -82,6 +86,7 @@ public class PizzaController {
 //        pc.getAllPizzasWithPrices();
 //        System.out.println(pc.getAllVegetarian());
 //        System.out.println(pc.findMostExpensiveVegetarian());
-        System.out.println(pc.iLikeMeat());
+// System.out.println(pc.iLikeMeat());
+        System.out.println(pc.groupByPrice());
     }
 }

@@ -24,7 +24,13 @@ public class PizzaController {
     }
 
     public List<Pizza> getAllSpicy() {
-        return Arrays.stream(Pizza.values()).filter(pizza -> pizza.getIngredients().stream().anyMatch(Ingredient::isSpicy)).collect(Collectors.toList());
+        return Arrays.stream(Pizza.values()).filter(pizza -> pizza.getIngredients().stream()
+                .anyMatch(Ingredient::isSpicy)).collect(Collectors.toList());
+    }
+
+    public List<Pizza> getAllVegetarian() {
+        return Arrays.stream(Pizza.values()).filter(pizza -> pizza.getIngredients().stream()
+                .noneMatch(Ingredient::isMeat)).collect(Collectors.toList());
     }
 
     public Pizza findCheapestSpicy() {
@@ -39,10 +45,31 @@ public class PizzaController {
         return null;
     }
 
+    public Pizza findMostExpensiveVegetarian() {
+        Optional<Pizza> pizzaOptional = Arrays.stream(Pizza.values()).filter(pizza -> pizza.getIngredients().stream()
+                .noneMatch(Ingredient::isMeat))
+                .sorted(Comparator.comparing(this::calculatePizzaPrice).reversed())
+                .findFirst();
+        if (pizzaOptional.isPresent()) {
+            return pizzaOptional.get();
+        }
+        System.out.println("Brak danych do pobrania");
+        return null;
+    }
+
+    public void getAllPizzasWithPrices() {
+        Arrays.stream(Pizza.values())
+                .forEach(pizza -> System.out.println(pizza.getName() + " - " + calculatePizzaPrice(pizza) + " PLN"));
+    }
+
+
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
-        System.out.println(pc.calculatePizzaPrice(Pizza.MARGHERITA));
-        System.out.println(pc.getAllSpicy());
-        System.out.println(pc.findCheapestSpicy());
+//        System.out.println(pc.calculatePizzaPrice(Pizza.MARGHERITA));
+//        System.out.println(pc.getAllSpicy());
+//        System.out.println(pc.findCheapestSpicy());
+//        pc.getAllPizzasWithPrices();
+        System.out.println(pc.getAllVegetarian());
+        System.out.println(pc.findMostExpensiveVegetarian());
     }
 }

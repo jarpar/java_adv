@@ -4,9 +4,9 @@ import oop.controller.InputOutputController;
 import oop.controller.UserController;
 import oop.model.User;
 import oop.model.enums.Gender;
+import oop.model.enums.Role;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import static oop.controller.UserControllerTemplate.users;
@@ -34,7 +34,7 @@ public class Run extends InputOutputController {
         run.readUsersFromFile();
 
         while (true) {
-            System.out.println("Co chcesz zrobic? \n1.Rejestracja \n2.Lista użytkowników \n3.Logowanie \n4.Zmień hasło \n5.Usuń użytkownika \n6.Sortuj po adresie e-mail \nQ.Wyjście");
+            System.out.println("Co chcesz zrobic? \n1.Rejestracja \n2.Lista użytkowników \n3.Logowanie \n4.Zmień hasło \n5.Usuń użytkownika \n6.Sortuj po adresie e-mail \n7.Podaj id użytkownika, którego chcesz zmodyfikować \nQ.Wyjście");
             String choice = scanner.nextLine().toUpperCase();
             if (choice.equals("1")) {
                 System.out.println("Podaj imię:");
@@ -106,6 +106,30 @@ public class Run extends InputOutputController {
                 } catch (InputMismatchException e) {
                     System.out.println("Błędny tryb sortowania!");
                     continue;
+                }
+            } else if (choice.equals("7")) {
+                try {
+                    System.out.println("Podaj id użytkownika, którego chcesz zmodyfikować");
+                    int userId = Integer.valueOf(scanner.nextLine());
+                    Set<Role> roles = new HashSet<>();
+                    while (true) {
+                        Arrays.stream(Role.values()).forEach((role -> System.out.println(role.ordinal() + ". " + role)));
+                        String decision = scanner.nextLine();
+                        if (decision.equals("0")) {
+                            roles.add(Role.ROLE_USER);
+                        } else if (decision.equals("1")) {
+                            roles.add(Role.ROLE_ADMIN);
+                        } else if (decision.equals("2")) {
+                            roles.add(Role.ROLE_VIEWER);
+                        } else if (decision.toUpperCase().equals("Q")) {
+                            System.out.println("Zaktualizowano zbiór ról.");
+                            break;
+                        } else {
+                            System.out.println("Błędny wybór");
+                        }
+                    }
+                } catch (Exception e) {
+                    // to do
                 }
             } else if (choice.equals("Q")) {
                 run.saveUserToFile();

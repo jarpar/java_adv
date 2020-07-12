@@ -82,8 +82,20 @@ public class PizzaController {
         return Arrays.stream(Pizza.values()).collect(Collectors.groupingBy(pizza -> pizza.getIngredients().size()));
     }
 
+    // menu:
+    // nazwa (składniki) - cena zł
     public String formatedMenu() {
-        return null;
+        return Arrays.stream(Pizza.values())
+                .map(pizza -> String.format(
+                        "%20s (%-87s) %7s %13s - %5.2f zł",
+                        pizza.getName(),
+                        pizza.getIngredients().stream().map(ingredient -> ingredient.getName()).collect(Collectors.joining(", ")),
+                        pizza.getIngredients().stream().anyMatch(Ingredient::isSpicy) ? "ostra" : "łagodna",
+                        pizza.getIngredients().stream().anyMatch(Ingredient::isMeat) ? "mięsna" : "wegetariańska",
+                        Double.valueOf(calculatePizzaPrice(pizza))
+                        )
+                )
+                .collect(Collectors.joining("\n"));
     }
 
     public static void main(String[] args) {
@@ -96,6 +108,7 @@ public class PizzaController {
 //        System.out.println(pc.findMostExpensiveVegetarian());
 //        System.out.println(pc.iLikeMeat());
         //System.out.println(pc.groupByPrice());
-        System.out.println(pc.groupByIngredientsCount());
+        //System.out.println(pc.groupByIngredientsCount());
+        System.out.println(pc.formatedMenu());
     }
 }

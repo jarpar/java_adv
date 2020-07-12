@@ -85,7 +85,7 @@ public class PizzaController {
 //        pc.getAllPizzasWithPrices();
 //        System.out.println(pc.getAllVegetarian());
 //        System.out.println(pc.findMostExpensiveVegetarian());
-// System.out.println(pc.iLikeMeat());
+//        System.out.println(pc.iLikeMeat());
         System.out.println(pc.groupByPrice());
     }
 }

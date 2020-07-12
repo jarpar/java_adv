@@ -3,9 +3,7 @@ package lambda_stream_optional;
 import oop.model.User;
 import oop.model.enums.Role;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StreamApiWithModel {
@@ -36,13 +34,36 @@ public class StreamApiWithModel {
                 .collect(Collectors.toList());
     }
 
+    // metoda grupująca użytkwoników po roli
+    public Map<Set<Role>, List<User>> groupUsersByRoleSet() {
+        return InMemoryData.users.stream().collect(Collectors.groupingBy(user -> user.getRoles()));
+    }
+
+    // metoda grupująca użytkowników po rolach występujacych w zbiorach ról
+    public Map<Role, List<User>> userRoleMapper() {
+        Map<Role, List<User>> userRoleMap = new HashMap<>();
+        for (Role role : Role.values()) {
+            List<User> groupingUsers = new ArrayList<>();
+            for (User user : InMemoryData.users) {
+                if (user.getRoles().contains(role)) {
+                    groupingUsers.add(user);
+                    userRoleMap.put(role, groupingUsers);
+                }
+            }
+        }
+        return userRoleMap;
+    }
+
     public static void main(String[] args) {
         StreamApiWithModel sapi = new StreamApiWithModel();
 //        sapi.getAllUsers();
 //        sapi.getDAllUsersOrderByRegistrationDateDesc();
 //        System.out.println(sapi.loginUser("al@al.pl", "al"));
 //        System.out.println(sapi.loginUser("jn@jn.pl", "jn"));
-        System.out.println(sapi.getAllUsersWithRole(Role.ROLE_ADMIN));
-
+//        System.out.println(sapi.getAllUsersWithRole(Role.ROLE_ADMIN));
+        //sapi.groupUsersByRoleSet().forEach(((roles, users) -> System.out.printf("%30s | %30s\n", roles, users)));
+        System.out.println(sapi.userRoleMapper().get(Role.ROLE_VIEWER));
+        System.out.println(sapi.userRoleMapper().get(Role.ROLE_ADMIN));
+        System.out.println(sapi.userRoleMapper().get(Role.ROLE_USER));
     }
 }

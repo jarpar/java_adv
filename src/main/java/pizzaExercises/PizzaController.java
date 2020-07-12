@@ -39,7 +39,6 @@ public class PizzaController {
         return null;
     }
 
-
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
         System.out.println(pc.calculatePizzaPrice(Pizza.MARGHERITA));

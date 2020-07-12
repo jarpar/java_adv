@@ -62,9 +62,15 @@ public class PizzaController {
                 .forEach(pizza -> System.out.println(pizza.getName() + " - " + calculatePizzaPrice(pizza) + " PLN"));
     }
 
+    public long calculateMeatIngredients(Pizza pizza) {
+        return pizza.getIngredients().stream()
+                .filter(p -> p.isMeat())
+                .count();
+    }
+
     public List<Pizza> iLikeMeat() {
         return Arrays.stream(Pizza.values()).filter(pizza -> pizza.getIngredients().stream()
-                .anyMatch(Ingredient::isMeat)).collect(Collectors.toList());
+                .anyMatch(Ingredient::isMeat)).sorted(Comparator.comparing(this::calculateMeatIngredients).reversed()).collect(Collectors.toList());
     }
 
 
@@ -74,7 +80,8 @@ public class PizzaController {
 //        System.out.println(pc.getAllSpicy());
 //        System.out.println(pc.findCheapestSpicy());
 //        pc.getAllPizzasWithPrices();
-        System.out.println(pc.getAllVegetarian());
-        System.out.println(pc.findMostExpensiveVegetarian());
+        //System.out.println(pc.getAllVegetarian());
+        //System.out.println(pc.findMostExpensiveVegetarian());
+        System.out.println(pc.iLikeMeat());
     }
 }

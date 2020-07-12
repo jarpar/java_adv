@@ -70,11 +70,20 @@ public class PizzaController {
 
     public List<Pizza> iLikeMeat() {
         return Arrays.stream(Pizza.values()).filter(pizza -> pizza.getIngredients().stream()
-                .anyMatch(Ingredient::isMeat)).sorted(Comparator.comparing(this::calculateMeatIngredients).reversed()).collect(Collectors.toList());
+                .anyMatch(Ingredient::isMeat)).sorted(Comparator.comparing(this::calculateMeatIngredients)
+                .reversed()).collect(Collectors.toList());
     }
 
     public Map<Integer, List<Pizza>> groupByPrice() {
         return Arrays.stream(Pizza.values()).collect(Collectors.groupingBy(this::calculatePizzaPrice));
+    }
+
+    public Map<Integer, List<Pizza>> groupByIngredientsCount() {
+        return Arrays.stream(Pizza.values()).collect(Collectors.groupingBy(pizza -> pizza.getIngredients().size()));
+    }
+
+    public String formatedMenu() {
+        return null;
     }
 
     public static void main(String[] args) {
@@ -86,6 +95,7 @@ public class PizzaController {
 //        System.out.println(pc.getAllVegetarian());
 //        System.out.println(pc.findMostExpensiveVegetarian());
 //        System.out.println(pc.iLikeMeat());
-        System.out.println(pc.groupByPrice());
+        //System.out.println(pc.groupByPrice());
+        System.out.println(pc.groupByIngredientsCount());
     }
 }

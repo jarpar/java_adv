@@ -9,13 +9,13 @@ import java.util.Scanner;
 
 public class ReadWriteExceptionHandler {
 
-    private static String path = Paths.get("").toAbsolutePath().toString() + "data.txt";
+    private static String path = Paths.get("").toAbsolutePath().toString() + "/src/main/java/exceptions/data.txt";
     private static File file = new File(path);
 
     public static void appendDataToFile() {
         while (true) {
             try {
-                FileWriter fileWriter = new FileWriter(file);
+                FileWriter fileWriter = new FileWriter(file, true);
                 Scanner scanner = new Scanner(System.in);
 
                 System.out.println("Wprowadź liczbę (Q - wyjście)");
@@ -27,6 +27,7 @@ public class ReadWriteExceptionHandler {
                 String s;
                 double number = Double.valueOf(data);
                 fileWriter.append(String.valueOf(number));
+                fileWriter.close();
 
             } catch (IOException e) {
                 e.printStackTrace();

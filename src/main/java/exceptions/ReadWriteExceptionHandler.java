@@ -1,6 +1,7 @@
 package exceptions;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -13,36 +14,52 @@ public class ReadWriteExceptionHandler {
     private static File file = new File(path);
 
     public static void appendDataToFile() {
+        FileWriter fileWriter = null;
         while (true) {
             try {
-                FileWriter fileWriter = new FileWriter(file, true);
+                fileWriter = new FileWriter(file, true);
                 Scanner scanner = new Scanner(System.in);
 
                 System.out.println("Wprowadź liczbę (Q - wyjście)");
                 String data = scanner.nextLine();
                 if (data.toUpperCase().equals("Q")) {
-                    fileWriter.close();
+                    //    fileWriter.close();
                     break;
                 }
                 String s;
                 double number = Double.valueOf(data);
-                fileWriter.append(String.valueOf(number));
-                fileWriter.close();
-
+                fileWriter.append(String.valueOf(number) + "\n");
+                // fileWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
+                System.out.println("Błąd pliku");
             } catch (InputMismatchException | NumberFormatException e) {
                 e.printStackTrace();
                 System.out.println("Błąd typu danych");
+            } finally {
+                try {
+                    fileWriter.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
     public static void readDAtaFromFile() {
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                System.out.println(scanner.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
     public static void main(String[] args) {
         appendDataToFile();
+        readDAtaFromFile();
     }
 }

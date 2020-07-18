@@ -18,7 +18,13 @@ public class Main {
         System.out.println(userAllArgs.isStatus());
         userAllArgs.setRegistrationDateTime(LocalDateTime.of(2020, 1, 10, 6, 15, 20));
         System.out.println(userAllArgs.getRegistrationDateTime());
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy'r.' '('HH:mm')' ");
         System.out.println(dateFormat.format(userAllArgs.getRegistrationDateTime()));
+
+        Task task1 = new Task();
+        Task task2 = new Task("nauka Javy", "programowanie obiektowe", false, userAllArgs);
+        System.out.println(task1);
+        System.out.println(task2);
+
     }
 }

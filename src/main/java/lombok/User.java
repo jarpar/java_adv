@@ -24,4 +24,6 @@ public class User {
     private LocalDateTime registrationDateTime;
     private boolean status;
 
+    public User(int i, String s, String test, LocalDateTime now, boolean b) {
+    }
 }

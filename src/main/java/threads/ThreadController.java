@@ -41,23 +41,5 @@ public class ThreadController {
         tc.printNumbers(th2);
         tc.printNumbers(th3);
         System.out.println("Wątek: " + Thread.currentThread().getName());
-        try {
-            th1.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        try {
-            th2.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        try {
-            th3.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println();
-
-
     }
 }

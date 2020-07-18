@@ -31,6 +31,9 @@ public class ReadWriteExceptionHandler {
                 if (number == 0) {
                     throw new ArithmeticException(); // sztuczne zgłoszenie wyjątku, musi być obsłużony!
                 }
+                if (number == 13) {
+                    throw new MyException();
+                }
                 fileWriter.append(String.valueOf(number) + "\n");
                 // fileWriter.close();
             } catch (IOException e) {
@@ -41,6 +44,8 @@ public class ReadWriteExceptionHandler {
                 System.out.println("Błąd typu danych");
             } catch (ArithmeticException e) {
                 System.out.println("Wprowadzona liczba nie może być 0.0");
+            } catch (MyException e) {
+                e.printStackTrace();
             } finally {
                 try {
                     fileWriter.close();
@@ -51,7 +56,7 @@ public class ReadWriteExceptionHandler {
         }
     }
 
-    public static void readDAtaFromFile() {
+    public static void readDataFromFile() {
         try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
@@ -65,6 +70,6 @@ public class ReadWriteExceptionHandler {
 
     public static void main(String[] args) {
         appendDataToFile();
-        readDAtaFromFile();
+        readDataFromFile();
     }
 }

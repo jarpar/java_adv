@@ -6,13 +6,12 @@ import java.time.format.DateTimeFormatter;
 public class MyException extends Exception {
     public MyException() {
         System.out.println("Jestem w konstruktorze MyException");
-
     }
 
     @Override
     public void printStackTrace() {
         super.printStackTrace();
-        System.out.println("Moja obsługa wyjątku");
+        System.out.println("Moja obsługa wyjątku \n" + getExceptionDateTime());
     }
 
     public String getExceptionDateTime() {

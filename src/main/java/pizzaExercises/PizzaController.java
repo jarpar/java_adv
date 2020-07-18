@@ -167,7 +167,6 @@ public class PizzaController {
                 .collect(Collectors.joining("\n"));
     }
 
-
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
         System.out.println("CENA: " + pc.calculatePizzaPrice(Pizza.MARGHERITA));
@@ -192,5 +191,6 @@ public class PizzaController {
         System.out.println(pc.formatedMenuOrderByPrice());
         System.out.println("MENU SORTOWANE PO LICZBIE SKŁADNIKÓW");
         System.out.println(pc.formatedMenuOrderByIngredientsCount());
+        System.out.println("MENU GRUPUJĄCE PO LICZBIE SKŁADNIKÓW");
     }
 }

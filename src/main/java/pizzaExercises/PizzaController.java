@@ -9,69 +9,78 @@ import java.util.stream.Collectors;
 
 public class PizzaController {
     // metoda zwracającą cenę pizzy na podstawie cen składowych wszystkich jej składników
-    public int calculatePizzaPrice(Pizza pizza){
+    public int calculatePizzaPrice(Pizza pizza) {
         return pizza.getIngredients().stream()
                 .mapToInt(p -> p.getPrice())
                 .sum();
     }
+
     // metoda zwracająca tylko pizze ostre
-    public List<Pizza> getAllSpicy(){
+    public List<Pizza> getAllSpicy() {
         return Arrays.stream(Pizza.values())
                 .filter(pizza -> pizza.getIngredients().stream().anyMatch(ingredient -> ingredient.isSpicy()))
                 .collect(Collectors.toList());
     }
 
     // metoda zwracająca obiekt Pizza dla najtańszej i ostrej pizzy
-    public Pizza findCheapestSpicy(){
+    public Pizza findCheapestSpicy() {
         Optional<Pizza> pizzaOpt = Arrays.stream(Pizza.values())
                 .filter(pizza -> pizza.getIngredients().stream().anyMatch(ingredient -> ingredient.isSpicy()))
                 .sorted(Comparator.comparing(pizza -> calculatePizzaPrice(pizza)))      // sortowanie MIN-MAX
                 .findFirst();                                                           // pobranie pierwszej wartości -> Optional
-        if(pizzaOpt.isPresent()){               // sprawdzenie czy optional zawiera wartość
+        if (pizzaOpt.isPresent()) {               // sprawdzenie czy optional zawiera wartość
             return pizzaOpt.get();              // wydobycie wartości z optionala
         }
         System.out.println("Brak danych do pobrania");
         return null;
     }
+
     // metoda wypisująca pizze wraz z cenami
-    public void getAllPizzasWithPrices(){
+    public void getAllPizzasWithPrices() {
         Arrays.stream(Pizza.values())
                 .forEach(pizza -> System.out.println(pizza.getName() + " - " + calculatePizzaPrice(pizza) + " PLN"));
     }
+
     // metoda zwracająca najdroższą pizze wegetariańską
-    Pizza findMostExpensiveVegetarian(){
+    Pizza findMostExpensiveVegetarian() {
         return Arrays.stream(Pizza.values())
                 .filter(pizza -> pizza.getIngredients().stream().noneMatch(ingredient -> ingredient.isMeat()))
                 .sorted(Comparator.comparing(this::calculatePizzaPrice).reversed())
                 .findFirst().get();
     }
+
     // metoda zwracająca ilość składników mięsnych danej pizzy
-    public long countMeatIngredients(Pizza pizza){
+    public long countMeatIngredients(Pizza pizza) {
         return pizza.getIngredients().stream().filter(Ingredient::isMeat).count();
     }
+
     // metoda zwracająca pizze mięsna posotrowane malejąco po liczbie składników mięsnych
-    public List<Pizza> iLikeMeat(){
+    public List<Pizza> iLikeMeat() {
         return Arrays.stream(Pizza.values())
                 .filter(pizza -> pizza.getIngredients().stream().anyMatch(Ingredient::isMeat))
                 .sorted(Comparator.comparing(this::countMeatIngredients).reversed())
                 .collect(Collectors.toList());
     }
+
     // metoda grupująca pizze po cenie
-    public Map<Integer, List<Pizza>> groupByPrice(){
+    public Map<Integer, List<Pizza>> groupByPrice() {
         return Arrays.stream(Pizza.values()).collect(Collectors.groupingBy(pizza -> calculatePizzaPrice(pizza)));
     }
+
     // metoda grupujące pizze po poziomach ostrości
-    public Map<Boolean, List<Pizza>> groupBySpicy(){
+    public Map<Boolean, List<Pizza>> groupBySpicy() {
         return Arrays.stream(Pizza.values()).collect(Collectors.groupingBy(
                 pizza -> pizza.getIngredients().stream().anyMatch(ingredient -> ingredient.isSpicy()))
         );
     }
+
     // metoda grupująca pizze po liczbie składników()
-    public Map<Integer, List<Pizza>> groupByIngredientsSize(){
+    public Map<Integer, List<Pizza>> groupByIngredientsSize() {
         return Arrays.stream(Pizza.values()).collect(Collectors.groupingBy(pizza -> pizza.getIngredients().size()));
     }
+
     // pizza menu: nazwa (składniki) - cena zł
-    public String formatedMenu(){
+    public String formatedMenu() {
         Random random = new Random();
         int randomIndex = random.nextInt(Pizza.values().length);
         Pizza pizzaOfTheDay = Pizza.values()[randomIndex];
@@ -87,8 +96,9 @@ public class PizzaController {
                         pizza.equals(pizzaOfTheDay) ? "*" : ""
                 )).collect(Collectors.joining("\n"));
     }
+
     // pizza menu - sortowanie po nazwie
-    public String formatedMenuOrderByName(){
+    public String formatedMenuOrderByName() {
         Random random = new Random();
         int randomIndex = random.nextInt(Pizza.values().length);
         Pizza pizzaOfTheDay = Pizza.values()[randomIndex];
@@ -107,6 +117,27 @@ public class PizzaController {
 //                .sorted(Comparator.comparing(pizza -> pizza.trim()))
                 .collect(Collectors.joining("\n"));
     }
+
+    public String formatedMenuOrderByPrice() {
+        Random random = new Random();
+        int randomIndex = random.nextInt(Pizza.values().length);
+        Pizza pizzaOfTheDay = Pizza.values()[randomIndex];
+
+        return Arrays.stream(Pizza.values())
+                .sorted(Comparator.comparing(this::calculatePizzaPrice))
+                .map(pizza -> String.format(
+                        "%15s (%-90s) %5s %4s - %5.2f zł %1s",
+                        pizza.getName(),
+                        pizza.getIngredients().stream().map(Ingredient::getName).collect(Collectors.joining(", ")),
+                        pizza.getIngredients().stream().anyMatch(Ingredient::isSpicy) ? "ostra" : "",
+                        pizza.getIngredients().stream().noneMatch(Ingredient::isMeat) ? "wege" : "",
+                        pizza.equals(pizzaOfTheDay) ? (double) calculatePizzaPrice(pizza) * 0.5 : (double) calculatePizzaPrice(pizza),
+                        pizza.equals(pizzaOfTheDay) ? "*" : ""
+                ))
+//                .sorted(Comparator.comparing(pizza -> pizza.trim()))
+                .collect(Collectors.joining("\n"));
+    }
+
 
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
@@ -128,5 +159,7 @@ public class PizzaController {
         System.out.println(pc.formatedMenu());
         System.out.println("MENU POSOTROWANE PO NAZWIE");
         System.out.println(pc.formatedMenuOrderByName());
+        System.out.println("MENU SORTOWANE PO CENIE");
+        System.out.println(pc.formatedMenuOrderByPrice());
     }
 }

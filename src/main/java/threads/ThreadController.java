@@ -6,11 +6,12 @@ public class ThreadController {
     Deque<Integer> numbers = new ArrayDeque<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
 
     // metoda implementująca wątek wypisujący wszystkie liczby
-    public void printNumbers() {
+    public void printNumbers(Thread thread) {
         // utworzenie klasy anonimowej
-        Thread thread = new Thread(new Runnable() {
+        thread = new Thread(new Runnable() {
             @Override
             public void run() {
+                long timeStart = System.currentTimeMillis();
                 while (!numbers.isEmpty()) {
                     try {
                         Thread.currentThread().sleep(new Random().nextInt(6) * 1000);     // uśpienie wąktu thread na 1s
@@ -25,6 +26,7 @@ public class ThreadController {
                         break;
                     }
                 }
+                System.out.println("Całkowity czas [s]: " + ((System.currentTimeMillis() / 1000) - (timeStart / 1000)));
             }
         });
         thread.start();         // uruchomienie wątku -> "wykonanie metody run()"
@@ -32,11 +34,30 @@ public class ThreadController {
 
     public static void main(String[] args) {
         ThreadController tc = new ThreadController();
+        long timeStart = System.currentTimeMillis();
+        Thread th1 = null, th2 = null, th3 = null;
         System.out.println("Wątek: " + Thread.currentThread().getName());
-        tc.printNumbers();
-        tc.printNumbers();
-        tc.printNumbers();
+        tc.printNumbers(th1);
+        tc.printNumbers(th2);
+        tc.printNumbers(th3);
         System.out.println("Wątek: " + Thread.currentThread().getName());
+        try {
+            th1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
+            th2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
+            th3.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println();
+
 
     }
 }

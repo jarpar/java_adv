@@ -28,6 +28,9 @@ public class ReadWriteExceptionHandler {
                 }
                 String s;
                 double number = Double.valueOf(data);
+                if (number == 0) {
+                    throw new ArithmeticException(); // sztuczne zgłoszenie wyjątku, musi być obsłużony!
+                }
                 fileWriter.append(String.valueOf(number) + "\n");
                 // fileWriter.close();
             } catch (IOException e) {
@@ -36,6 +39,8 @@ public class ReadWriteExceptionHandler {
             } catch (InputMismatchException | NumberFormatException e) {
                 e.printStackTrace();
                 System.out.println("Błąd typu danych");
+            } catch (ArithmeticException e) {
+                System.out.println("Wprowadzona liczba nie może być 0.0");
             } finally {
                 try {
                     fileWriter.close();

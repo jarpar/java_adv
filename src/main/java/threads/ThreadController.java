@@ -14,9 +14,11 @@ public class ThreadController {
                 while (!numbers.isEmpty()) {
                     try {
                         Thread.currentThread().sleep(new Random().nextInt(6) * 1000);     // uśpienie wąktu thread na 1s
-                        System.out.println("Wątek: " + Thread.currentThread().getName() +
-                                " - wartość: " + numbers.removeFirst() +
-                                " aktualna zawartość: " + numbers);
+                        synchronized (numbers) {
+                            System.out.println("Wątek: " + Thread.currentThread().getName() +
+                                    " - wartość: " + numbers.removeFirst() +
+                                    " aktualna zawartość: " + numbers);
+                        }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (NoSuchElementException e) {

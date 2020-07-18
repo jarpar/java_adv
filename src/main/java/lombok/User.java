@@ -10,6 +10,13 @@ import java.time.LocalDateTime;
  5.toString
  */
 
+// automatycznie generowanie przez lombok:
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
+@EqualsAndHashCode
+
 public class User {
     private int userId;
     private String email;

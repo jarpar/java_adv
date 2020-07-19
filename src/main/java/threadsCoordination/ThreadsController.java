@@ -20,7 +20,7 @@ public class ThreadsController {
             public void run() {
                 for (String n : names
                 ) {
-                    System.out.println(n);
+                    System.out.println(Thread.currentThread().getName() + ": " + n);
                     try {
                         Thread.currentThread().sleep(500);
                     } catch (InterruptedException e) {
@@ -28,7 +28,7 @@ public class ThreadsController {
                     }
                 }
             }
-        });
+        }, "producer1");
         producer1.start();
     }
 
@@ -38,7 +38,7 @@ public class ThreadsController {
             @Override
             public void run() {
                 for (int n : numbers) {
-                    System.out.println(n);
+                    System.out.println(Thread.currentThread().getName() + ": " + n);
                     try {
                         Thread.currentThread().sleep(500);
                     } catch (InterruptedException e) {
@@ -47,7 +47,7 @@ public class ThreadsController {
 
                 }
             }
-        });
+        }, "producer2");
         producer2.start();
     }
 

@@ -9,12 +9,17 @@ import java.util.List;
 // 2. Producer 1 wypisuje ne ekran zawartość List<String>
 // 3. Producer 2 wypisuje na ekran zawartość Array<Integer>
 // --------------------------------------------------------
+// 4. producer 2 może wypisywać na ekran dopiero gdy producer skończy działanie (wypisze wszystkie)
+// 5. Po zakończeniu pracy obu wątków wątek główny niech wypisze "KONIEC"
+
 public class ThreadsController {
     List<String> names = new ArrayList<>(Arrays.asList("Adam", "Jan", "Anna", "Ola", "Iga"));
     int[] numbers = {22, 12, 34, 54, 3, 2, 1, 1, 1, 1, 0, 0, 1};
+    Thread thread1;// = new Thread();
+    Thread thread2;//= new Thread();
 
     public void printNames() {
-        Thread producer1 = new Thread(new Runnable() {
+        thread1 = new Thread(new Runnable() {
 
             @Override
             public void run() {
@@ -29,14 +34,20 @@ public class ThreadsController {
                 }
             }
         }, "producer1");
-        producer1.start();
+        thread1.start();
     }
 
     public void printNumbers() {
-        Thread producer2 = new Thread(new Runnable() {
+        thread2 = new Thread(new Runnable() {
+
 
             @Override
             public void run() {
+                try {
+                    thread1.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 for (int n : numbers) {
                     System.out.println(Thread.currentThread().getName() + ": " + n);
                     try {
@@ -48,11 +59,12 @@ public class ThreadsController {
                 }
             }
         }, "producer2");
-        producer2.start();
+        thread2.start();
     }
 
     public static void main(String[] args) {
-        new ThreadsController().printNames();
-        new ThreadsController().printNumbers();
+        ThreadsController threadsController = new ThreadsController();
+        threadsController.printNames();
+        threadsController.printNumbers();
     }
 }

@@ -22,7 +22,7 @@ public class ThreadsController {
                 ) {
                     System.out.println(n);
                     try {
-                        Thread.currentThread().sleep(1000);
+                        Thread.currentThread().sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -40,7 +40,7 @@ public class ThreadsController {
                 for (int n : numbers) {
                     System.out.println(n);
                     try {
-                        Thread.currentThread().sleep(1000);
+                        Thread.currentThread().sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

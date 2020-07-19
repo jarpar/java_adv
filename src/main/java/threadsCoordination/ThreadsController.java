@@ -66,5 +66,12 @@ public class ThreadsController {
         ThreadsController threadsController = new ThreadsController();
         threadsController.printNames();
         threadsController.printNumbers();
+        try {
+            threadsController.thread1.join();
+            threadsController.thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("KONIEC");
     }
 }
